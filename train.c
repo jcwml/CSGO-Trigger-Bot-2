@@ -206,7 +206,7 @@ int main()
     {
         float epoch_loss = 0.f;
         time_t st = time(0);
-        for(int j = 0; j < NONTARGET_SAMPLES; j++)
+        for(int j = 0; j < TARGET_SAMPLES; j++)
         {
 #ifndef __linux__
             float r = 0;
