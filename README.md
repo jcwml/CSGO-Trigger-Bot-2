@@ -7,3 +7,5 @@ The difference is that in the original version I just kept generating and testin
 In this version I have modified the example project to such an extent that every time the network is retrained it should produce a slightly different network but every time it should have fairly good accuracy and misfire results.
 
 Every time [`compile.sh`](compile.sh) is executed a new network will be trained and the aim program will be compiled and launched, or if you just want to launch the aim program with no training you can execute [`release.sh`](release.sh).
+
+Enabling `#define SIGMOID_OUTPUT` in [train.c](train.c) may or may not improve the activation depending on the network trained, have a play around.
