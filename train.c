@@ -37,7 +37,8 @@
 #define NONTARGET_SAMPLES_FLOAT1 5178.f
 const uint TOTAL_SAMPLES = TARGET_SAMPLES + NONTARGET_SAMPLES;
 #define SAMPLE_SIZE 2352
-#define EPOCHS 1
+#define EPOCHS 128
+#define LOSS_TARGET 0.3f
 
 float targets[TARGET_SAMPLES][3][28][28];
 float nontargets[NONTARGET_SAMPLES][3][28][28];
@@ -226,9 +227,11 @@ int main()
             //printf("[%i] loss: %f\n", j, r);
         }
         printf("[%i] epoch loss: %f\n", i, epoch_loss);
-        printf("[%i] avg epoch loss: %f\n", i, epoch_loss/TOTAL_SAMPLES);
+        const float ael = epoch_loss/TOTAL_SAMPLES;
+        printf("[%i] avg epoch loss: %f\n", i, ael);
         TBVGG3_Debug(&net);
         printf("[%i] SPS: %.2f\n\n", i, ((float)TOTAL_SAMPLES)/((float)(time(0)-st))); // samples per second
+        if(ael < LOSS_TARGET){break;} // break at loss target
     }
 
     // done
