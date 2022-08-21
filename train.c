@@ -35,6 +35,7 @@
 #define NONTARGET_SAMPLES 5179
 #define TARGET_SAMPLES_FLOAT1 7682.f
 #define NONTARGET_SAMPLES_FLOAT1 5178.f
+const uint TOTAL_SAMPLES = TARGET_SAMPLES + NONTARGET_SAMPLES;
 #define SAMPLE_SIZE 2352
 #define EPOCHS 1
 
@@ -206,7 +207,7 @@ int main()
     {
         float epoch_loss = 0.f;
         time_t st = time(0);
-        for(int j = 0; j < TARGET_SAMPLES; j++)
+        for(int j = 0; j < TOTAL_SAMPLES; j++)
         {
 #ifndef __linux__
             float r = 0;
@@ -225,9 +226,9 @@ int main()
             //printf("[%i] loss: %f\n", j, r);
         }
         printf("[%i] epoch loss: %f\n", i, epoch_loss);
-        printf("[%i] avg epoch loss: %f\n", i, epoch_loss/TARGET_SAMPLES);
+        printf("[%i] avg epoch loss: %f\n", i, epoch_loss/TOTAL_SAMPLES);
         TBVGG3_Debug(&net);
-        printf("[%i] SPS: %.2f\n\n", i, ((float)TARGET_SAMPLES)/((float)(time(0)-st))); // samples per second
+        printf("[%i] SPS: %.2f\n\n", i, ((float)TOTAL_SAMPLES)/((float)(time(0)-st))); // samples per second
     }
 
     // done
