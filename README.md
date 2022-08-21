@@ -1,4 +1,4 @@
-CSGO Trigger Bot v2
+# CSGO Trigger Bot v2
 
 The original [CSGO-Trigger-Bot here](https://github.com/jcwml/CSGO-Trigger-Bot) is probably going to have a better trained network than anything this version can produce.
 
