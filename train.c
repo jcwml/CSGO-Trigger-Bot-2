@@ -24,7 +24,7 @@
 
 //#define UNIFORM_GLOROT
 #define ADA8
-#define OPTIM_SGD
+#define OPTIM_NAG
 #define LEARNING_RATE 0.0001f
 #define GAIN          0.0065f
 #define SIGMOID_OUTPUT
