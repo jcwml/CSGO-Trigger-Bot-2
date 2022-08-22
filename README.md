@@ -18,4 +18,4 @@ Training can still be a bit touch and go, generally you want to aim for an `avg 
 _[ADA8] [OPTIM_NAG] [UNIFORM_GLOROT]_
 | Seed  | Epochs | Time Taken | loss |
 | --- | --- | --- | --- |
-| a | b | c | d |
+| 2,780,854,223 | 33 | 877 sec (14.61 min)  | 0.29 |
