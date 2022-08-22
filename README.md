@@ -10,7 +10,7 @@ Every time [`compile.sh`](compile.sh) is executed a new network will be trained 
 
 Enabling `#define SIGMOID_OUTPUT` in [aim.c](aim.c) may or may not improve the activation depending on the network trained, have a play around.
 
-The supplied [network.save](network.save) is pretty good with a loss of `0.29`.
+The supplied [network.save](network.save) is pretty good with a loss of `0.23`.
 
 ## Training Variability
 Training can still be a bit touch and go, generally you want to aim for an `avg epoch loss` of 0.3 or less, but often the network will get stuck before that point, tests show this is primerily attributed to the random initialisation of the weights and then partly but less so, the random seed used for shuffling the training data. When a random seed is set, that seed is used for weight initialisation and then re-used for shuffling the data during training.
