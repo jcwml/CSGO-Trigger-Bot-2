@@ -14,12 +14,21 @@
 
 #include <unistd.h>
 #include <stdint.h>
+#include <locale.h>
 
+// you cannot supply a seed to the high entropy random
 #ifdef __linux__
-    #include <sys/file.h>
-    #include <signal.h>
+    //#define HIGH_ENTROPY_RANDOM
+    #define HIGH_ENTROPY_SEED
 #endif
 
+#if defined(HIGH_ENTROPY_RANDOM) || defined(HIGH_ENTROPY_SEED)
+    #include <sys/file.h>
+#endif
+
+#ifdef __linux__
+    #include <signal.h>
+#endif
 #define forceinline __attribute__((always_inline)) inline
 
 //#define UNIFORM_GLOROT
@@ -91,6 +100,9 @@ void generate_output(int sig_num)
     // save network
     TBVGG3_SaveNetwork(&net, "network.save");
 
+    // print seed again
+    printf("Random Seed: %'u\n\n", seed);
+
     // done
     exit(0);
 }
@@ -103,8 +115,16 @@ int main()
 #endif
 
     // seed random
+#ifdef HIGH_ENTROPY_SEED
+    int f = open("/dev/urandom", O_RDONLY | O_CLOEXEC);
+    ssize_t result = read(f, &seed, sizeof(unsigned int));
+    close(f);
+#else
     seed = time(0);
+#endif
     srand(seed);
+    setlocale(LC_NUMERIC, "");
+    printf("Random Seed: %'u\n\n", seed);
 
     // load targets
     printf("loading target data\n");
