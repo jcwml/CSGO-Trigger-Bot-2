@@ -16,7 +16,7 @@
 #include <stdint.h>
 #include <locale.h>
 
-//#define FIXED_SEED 8888
+//#define FIXED_SEED 1947939716
 //#define DO_VALIATION_TESTS
 
 // you cannot supply a seed to the high entropy random
@@ -125,7 +125,7 @@ int main()
 
     // seed random
 #ifdef FIXED_SEED
-    seed = FIXED_SEED
+    seed = FIXED_SEED;
 #else
     #ifdef HIGH_ENTROPY_SEED
         int f = open("/dev/urandom", O_RDONLY | O_CLOEXEC);
