@@ -49,10 +49,12 @@
 #define NONTARGET_SAMPLES_FLOAT1 5178.f
 const uint TOTAL_SAMPLES = TARGET_SAMPLES + NONTARGET_SAMPLES;
 #define SAMPLE_SIZE 2352
-#define EPOCHS 128
+#define EPOCHS 33
 #define LOSS_TARGET 0.3f
 uint seed = 8888;
 time_t tt = 0;
+uint ei = 0;
+float ael = 0.f;
 
 float targets[TARGET_SAMPLES][3][28][28];
 float nontargets[NONTARGET_SAMPLES][3][28][28];
@@ -109,6 +111,13 @@ void generate_output(int sig_num)
     // print seed again
     printf("Random Seed: %'u\n", seed);
     printf("Time Taken: %'lu\n", time(0)-tt);
+
+    FILE* f = fopen("results.txt", "a");
+    if(f != NULL)
+    {
+        fprintf(f, "| %'u | %u | %'lu sec (%.2f mins) | %f |\n", seed, ei, time(0)-tt, (((float)(time(0)-tt))/60.f), ael);
+        fclose(f);
+    }
 
     // done
     exit(0);
@@ -239,7 +248,7 @@ int main()
     // train
     printf("\ntraining network\n\n");
     TBVGG3_Reset(&net, seed);
-    for(int i = 0; i < EPOCHS; i++)
+    for(ei = 0; ei < EPOCHS; ei++)
     {
         float epoch_loss = 0.f;
         time_t st = time(0);
@@ -261,11 +270,11 @@ int main()
             epoch_loss += r;
             //printf("[%i] loss: %f\n", j, r);
         }
-        printf("[%i] epoch loss: %f\n", i, epoch_loss);
-        const float ael = epoch_loss/TOTAL_SAMPLES;
-        printf("[%i] avg epoch loss: %f\n", i, ael);
+        printf("[%i] epoch loss: %f\n", ei, epoch_loss);
+        ael = epoch_loss/TOTAL_SAMPLES;
+        printf("[%i] avg epoch loss: %f\n", ei, ael);
         TBVGG3_Debug(&net);
-        printf("[%i] SPS: %.2f\n\n", i, ((float)TOTAL_SAMPLES)/((float)(time(0)-st))); // samples per second
+        printf("[%i] SPS: %.2f\n\n", ei, ((float)TOTAL_SAMPLES)/((float)(time(0)-st))); // samples per second
         if(ael < LOSS_TARGET){break;} // break at loss target
     }
 
