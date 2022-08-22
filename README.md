@@ -18,7 +18,6 @@ Training can still be a bit touch and go, generally you want to aim for an `avg 
 _These are all trained using an ADA8 network, OPTIM_NAG, and UNIFORM_GLOROT weight init. The training was set to end at a loss of less than 0.3 so it is possible that seeds in this table could reach a lower loss._
 | Seed  | Epochs | Time Taken | loss |
 | --- | --- | --- | --- |
-
 | 1,947,939,716 | 15 | 252 sec (4.20 mins) | 0.29 |
 | 3,681,819,285 | 16 | 268 sec (4.46 mins) | 0.29 |
 | 2,205,898,327 | 22 | 358 sec (5.96 mins) | 0.29 |
