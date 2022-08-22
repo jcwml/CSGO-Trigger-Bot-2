@@ -52,6 +52,7 @@ const uint TOTAL_SAMPLES = TARGET_SAMPLES + NONTARGET_SAMPLES;
 #define EPOCHS 128
 #define LOSS_TARGET 0.3f
 uint seed = 8888;
+time_t tt = 0;
 
 float targets[TARGET_SAMPLES][3][28][28];
 float nontargets[NONTARGET_SAMPLES][3][28][28];
@@ -106,7 +107,8 @@ void generate_output(int sig_num)
     TBVGG3_SaveNetwork(&net, "network.save");
 
     // print seed again
-    printf("Random Seed: %'u\n\n", seed);
+    printf("Random Seed: %'u\n", seed);
+    printf("Time Taken: %'lu\n", time(0)-tt);
 
     // done
     exit(0);
@@ -114,6 +116,8 @@ void generate_output(int sig_num)
 
 int main()
 {
+    tt = time(0);
+
 #ifdef __linux__
     // ctrl+c callback
     signal(SIGINT, generate_output);
