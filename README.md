@@ -14,6 +14,6 @@ The supplied [network.save](network.save) is pretty good.
 
 Training can still be a bit touch and go, generally you want to aim for an `avg epoch loss` of 0.3 or less, but often the network will get stuck before that point, I attribute this to probably being the weight initialisation, although, it could also be the random sequence training data is shuffled in.
 
-Table of seeds:
+### Table of seeds
 | Seed  | Epochs | Time Taken | loss |
 | a | b | c | d |
