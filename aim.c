@@ -27,7 +27,7 @@
 
 // neural network
 #define ADA8
-//#define SIGMOID_OUTPUT
+#define SIGMOID_OUTPUT
 #include "TBVGG3.h"
 TBVGG3_Network net;
 
