@@ -16,6 +16,9 @@
 #include <stdint.h>
 #include <locale.h>
 
+//#define FIXED_SEED 8888
+//#define DO_VALIATION_TESTS
+
 // you cannot supply a seed to the high entropy random
 #ifdef __linux__
     //#define HIGH_ENTROPY_RANDOM
@@ -81,21 +84,23 @@ static forceinline uint uRand(const uint min, const uint max)
 
 void generate_output(int sig_num)
 {
-    // // test targets
-    // float s = 0.f;
-    // for(int i = 0; i < TARGET_SAMPLES; i++)
-    // {
-    //     s += TBVGG3_Process(&net, targets[i], NO_LEARN);
-    // }
-    // printf("targets: %f / %u\n", s, TARGET_SAMPLES);
+#ifdef DO_VALIATION_TESTS
+    // test targets
+    float s = 0.f;
+    for(int i = 0; i < TARGET_SAMPLES; i++)
+    {
+        s += TBVGG3_Process(&net, targets[i], NO_LEARN);
+    }
+    printf("targets: %f / %u\n", s, TARGET_SAMPLES);
 
-    // // test nontargets
-    // s = 0.f;
-    // for(int i = 0; i < NONTARGET_SAMPLES; i++)
-    // {
-    //     s += TBVGG3_Process(&net, nontargets[i], NO_LEARN);
-    // }
-    // printf("nontargets: %f / %u\n", s, NONTARGET_SAMPLES);
+    // test nontargets
+    s = 0.f;
+    for(int i = 0; i < NONTARGET_SAMPLES; i++)
+    {
+        s += TBVGG3_Process(&net, nontargets[i], NO_LEARN);
+    }
+    printf("nontargets: %f / %u\n", s, NONTARGET_SAMPLES);
+#endif
 
     // save network
     TBVGG3_SaveNetwork(&net, "network.save");
@@ -115,12 +120,16 @@ int main()
 #endif
 
     // seed random
-#ifdef HIGH_ENTROPY_SEED
-    int f = open("/dev/urandom", O_RDONLY | O_CLOEXEC);
-    ssize_t result = read(f, &seed, sizeof(unsigned int));
-    close(f);
+#ifdef FIXED_SEED
+    seed = FIXED_SEED
 #else
-    seed = time(0);
+    #ifdef HIGH_ENTROPY_SEED
+        int f = open("/dev/urandom", O_RDONLY | O_CLOEXEC);
+        ssize_t result = read(f, &seed, sizeof(unsigned int));
+        close(f);
+    #else
+        seed = time(0);
+    #endif
 #endif
     srand(seed);
     setlocale(LC_NUMERIC, "");
