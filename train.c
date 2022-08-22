@@ -117,11 +117,14 @@ void generate_output(int sig_num)
 
     // dump results to file for github markdown table
     // should flock()
-    FILE* f = fopen("results.txt", "a");
-    if(f != NULL)
+    if(ael < LOSS_TARGET)
     {
-        fprintf(f, "| %'u | %u | %'lu sec (%.2f mins) | %f |\n", seed, ei-1, time(0)-tt, (((float)(time(0)-tt))/60.f), ael);
-        fclose(f);
+        FILE* f = fopen("results.txt", "a");
+        if(f != NULL)
+        {
+            fprintf(f, "| %'u | %u | %'lu sec (%.2f mins) | %f |\n", seed, ei-1, time(0)-tt, (((float)(time(0)-tt))/60.f), ael);
+            fclose(f);
+        }
     }
 
     // done
