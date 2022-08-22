@@ -39,6 +39,7 @@ const uint TOTAL_SAMPLES = TARGET_SAMPLES + NONTARGET_SAMPLES;
 #define SAMPLE_SIZE 2352
 #define EPOCHS 128
 #define LOSS_TARGET 0.3f
+uint seed = 8888;
 
 float targets[TARGET_SAMPLES][3][28][28];
 float nontargets[NONTARGET_SAMPLES][3][28][28];
@@ -102,7 +103,8 @@ int main()
 #endif
 
     // seed random
-    srand(time(0));
+    seed = time(0)
+    srand(seed);
 
     // load targets
     printf("loading target data\n");
@@ -203,7 +205,7 @@ int main()
 
     // train
     printf("\ntraining network\n\n");
-    TBVGG3_Reset(&net, time(0));
+    TBVGG3_Reset(&net, seed);
     for(int i = 0; i < EPOCHS; i++)
     {
         float epoch_loss = 0.f;
