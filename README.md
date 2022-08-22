@@ -16,4 +16,5 @@ Training can still be a bit touch and go, generally you want to aim for an `avg 
 
 ### Table of seeds
 | Seed  | Epochs | Time Taken | loss |
+| --- | --- |
 | a | b | c | d |
