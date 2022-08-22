@@ -19,9 +19,8 @@
 //#define FIXED_SEED 1947939716
 //#define DO_VALIATION_TESTS
 
-// you cannot supply a seed to the high entropy random
 #ifdef __linux__
-    //#define HIGH_ENTROPY_RANDOM
+    //#define HIGH_ENTROPY_RANDOM // you cannot supply a seed to the high entropy random
     #define HIGH_ENTROPY_SEED
 #endif
 
@@ -45,13 +44,17 @@
 
 #define TARGET_SAMPLES 7683
 #define NONTARGET_SAMPLES 5179
-#define TARGET_SAMPLES_FLOAT1 7682.f
-#define NONTARGET_SAMPLES_FLOAT1 5178.f
-const uint TOTAL_SAMPLES = TARGET_SAMPLES + NONTARGET_SAMPLES;
-#define SAMPLE_SIZE 2352
-#define EPOCHS 33
 #define LOSS_TARGET 0.3f
-uint seed = 8888;
+#define EPOCHS 33
+
+#ifdef HIGH_ENTROPY_RANDOM
+    #define TARGET_SAMPLES_FLOAT1 7682.f
+    #define NONTARGET_SAMPLES_FLOAT1 5178.f
+#endif
+
+#define SAMPLE_SIZE 2352
+const uint TOTAL_SAMPLES = TARGET_SAMPLES + NONTARGET_SAMPLES;
+uint seed = 0;
 time_t tt = 0;
 uint ei = 0;
 float ael = 0.f;
@@ -62,7 +65,7 @@ TBVGG3_Network net;
 
 ///
 
-#ifdef __linux__
+#ifdef HIGH_ENTROPY_RANDOM
 static inline float urandf() // 0 to 1
 {
     static const float FLOAT_UINT64_MAX = 1.f/(float)UINT64_MAX;
@@ -108,14 +111,15 @@ void generate_output(int sig_num)
     // save network
     TBVGG3_SaveNetwork(&net, "network.save");
 
-    // print seed again
+    // print seed again & time taken for execution
     printf("Random Seed: %'u\n", seed);
     printf("Time Taken: %'lu\n", time(0)-tt);
 
+    // dump results to file for github markdown table
     FILE* f = fopen("results.txt", "a");
     if(f != NULL)
     {
-        fprintf(f, "| %'u | %u | %'lu sec (%.2f mins) | %f |\n", seed, ei, time(0)-tt, (((float)(time(0)-tt))/60.f), ael);
+        fprintf(f, "| %'u | %u | %'lu sec (%.2f mins) | %f |\n", seed, ei-1, time(0)-tt, (((float)(time(0)-tt))/60.f), ael);
         fclose(f);
     }
 
@@ -125,6 +129,7 @@ void generate_output(int sig_num)
 
 int main()
 {
+    // time taken (start time) for entire execution
     tt = time(0);
 
 #ifdef __linux__
@@ -227,7 +232,6 @@ int main()
                     const float r = (float)tb[(((28*y)+x)*3)];
                     const float g = (float)tb[(((28*y)+x)*3)+1];
                     const float b = (float)tb[(((28*y)+x)*3)+2];
-                    
 #ifdef NORMALISE_INPUTS
                     nontargets[i][0][y][x] = (r-128.f)*0.0078125f;
                     nontargets[i][1][y][x] = (g-128.f)*0.0078125f;
@@ -254,18 +258,18 @@ int main()
         time_t st = time(0);
         for(int j = 0; j < TOTAL_SAMPLES; j++)
         {
-#ifndef __linux__
+#ifdef HIGH_ENTROPY_RANDOM
+            float r = 0;
+            if(qRand(0.f, 100.f) < 50)
+                r = 1.f - TBVGG3_Process(&net, targets[qRand(0.f, TARGET_SAMPLES_FLOAT1)], LEARN_MAX);
+            else
+                r = TBVGG3_Process(&net, nontargets[qRand(0.f, NONTARGET_SAMPLES_FLOAT1)], LEARN_MIN);       
+#else
             float r = 0;
             if(uRand(0, 100) < 50)
                 r = 1.f - TBVGG3_Process(&net, targets[uRand(0, TARGET_SAMPLES-1)], LEARN_MAX);
             else
                 r = TBVGG3_Process(&net, nontargets[uRand(0, NONTARGET_SAMPLES-1)], LEARN_MIN);
-#else
-            float r = 0;
-            if(uRand(0, 100) < 50)
-                r = 1.f - TBVGG3_Process(&net, targets[qRand(0.f, TARGET_SAMPLES_FLOAT1)], LEARN_MAX);
-            else
-                r = TBVGG3_Process(&net, nontargets[qRand(0.f, NONTARGET_SAMPLES_FLOAT1)], LEARN_MIN);
 #endif
             epoch_loss += r;
             //printf("[%i] loss: %f\n", j, r);
