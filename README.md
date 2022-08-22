@@ -12,10 +12,10 @@ Enabling `#define SIGMOID_OUTPUT` in [aim.c](aim.c) may or may not improve the a
 
 The supplied [network.save](network.save) is pretty good.
 
-### Training Variability
+## Training Variability
 Training can still be a bit touch and go, generally you want to aim for an `avg epoch loss` of 0.3 or less, but often the network will get stuck before that point, tests show this is primerily attributed to the random initialisation of the weights and then partly but less so, the random seed used for shuffling the training data. When a random seed is set, that seed is used for weight initialisation and then re-used for shuffling the data during training.
 
-### Table of seeds
+## Table of seeds
 _These are all trained using an ADA8 network, OPTIM_NAG, and UNIFORM_GLOROT weight init. The training was set to end at a loss of less than 0.3 so it is possible that seeds in this table could reach a lower loss._
 | Seed  | Epochs | Time Taken | loss |
 | --- | --- | --- | --- |
