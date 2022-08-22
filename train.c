@@ -103,7 +103,7 @@ int main()
 #endif
 
     // seed random
-    seed = time(0)
+    seed = time(0);
     srand(seed);
 
     // load targets
