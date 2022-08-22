@@ -35,6 +35,7 @@ _These are all trained using an ADA8 network, OPTIM_NAG, and UNIFORM_GLOROT weig
 | Seed  | Epochs | Time Taken | loss |
 | --- | --- | --- | --- |
 | 1,931,370,444 | 55 | 1,455 sec (24.25 mins) | 0.23 |
+| 2,910,301,494 | 71 | 1,120 sec (18.67 mins) | 0.23 |
 | 3,721,615,797 | 81 | 2,258 sec (37.63 mins) | 0.23 |
 | 2,380,237,492 | 104 | 2,532 sec (42.20 mins) | 0.23 |
 | 1,947,939,716 | 109 | 1,283 sec (21.38 mins) | 0.23 |
