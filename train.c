@@ -122,7 +122,7 @@ void generate_output(int sig_num)
         FILE* f = fopen("results.txt", "a");
         if(f != NULL)
         {
-            fprintf(f, "| %'u | %u | %'lu sec (%.2f mins) | %f |\n", seed, ei-1, time(0)-tt, (((float)(time(0)-tt))/60.f), ael);
+            fprintf(f, "| %'u | %u | %'lu sec (%.2f mins) | %f |\n", seed, ei, time(0)-tt, (((float)(time(0)-tt))/60.f), ael);
             fclose(f);
         }
     }
