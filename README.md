@@ -15,7 +15,7 @@ The supplied [network.save](network.save) is pretty good.
 Training can still be a bit touch and go, generally you want to aim for an `avg epoch loss` of 0.3 or less, but often the network will get stuck before that point, I attribute this to probably being the weight initialisation, although, it could also be the random sequence training data is shuffled in.
 
 ### Table of seeds
-_[ADA8] [OPTIM_NAG] [UNIFORM_GLOROT]_
+_These where all trained using an ADA8 network, OPTIM_NAG, and UNIFORM_GLOROT weight init. The training was set to end at a loss of less than 0.3 so it is possible that seeds in this table could reach a lower loss._
 | Seed  | Epochs | Time Taken | loss |
 | --- | --- | --- | --- |
 | 2,780,854,223 | 33 | 877 sec (14.61 min)  | 0.29 |
