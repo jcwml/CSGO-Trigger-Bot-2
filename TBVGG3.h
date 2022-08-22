@@ -111,9 +111,9 @@
 
     Network size:
 
-        ADA8:  23.6  KiB (24,128  bytes)
-        ADA16: 92.1  KiB (94,336  bytes)
-        ADA32: 364.2 KiB (372,992 bytes)
+        ADA8:  23.6  KiB (24,128  bytes)
+        ADA16: 92.1  KiB (94,336  bytes)
+        ADA32: 364.2 KiB (372,992 bytes)
 
 */
 
@@ -142,7 +142,7 @@
 #endif
 
 #if !defined(OPTIM_NAG) && !defined(OPTIM_SGD) && !defined(OPTIM_ADA)
-    #define OPTIM_NAG
+    #define OPTIM_ADA
 #endif
 
 #if defined(OPTIM_NAG) && !defined(NAG_MOMENTUM)
@@ -428,10 +428,9 @@ void TBVGG3_2x2MaxPool(const uint depth, const uint wh, const float input[depth]
         uint oi = 0, oj = 0;
 
         // for every 2x2 chunk of input
-        const uint wh1 = wh-1;
-        for(uint i = 0; i < wh1; i += 2, oi++)
+        for(uint i = 0; i < wh; i += 2, oi++)
         {
-            for(uint j = 0; j < wh1; j += 2, oj++)
+            for(uint j = 0; j < wh; j += 2, oj++)
             {
                 // get max val
                 float max = 0.f;
