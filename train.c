@@ -116,6 +116,7 @@ void generate_output(int sig_num)
     printf("Time Taken: %'lu\n", time(0)-tt);
 
     // dump results to file for github markdown table
+    // should flock()
     FILE* f = fopen("results.txt", "a");
     if(f != NULL)
     {
