@@ -85,7 +85,7 @@ static forceinline uint qRand(const float min, const float max)
 static forceinline uint uRand(const uint min, const uint max)
 {
     static float rndmax = 1.f/(float)RAND_MAX;
-    return ((((float)rand()) * rndmax) * (max-min) ) + min;
+    return (((float)rand()) * rndmax) * (max-min) + min;
 }
 
 void generate_output(int sig_num)
