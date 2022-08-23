@@ -78,7 +78,7 @@ static inline float urandf() // 0 to 1
 
 static forceinline uint qRand(const float min, const float max)
 {
-    return ( ( urandf() * (max-min) ) + min ) + 0.5f;
+    return urandf() * (max-min) + min;
 }
 #endif
 
