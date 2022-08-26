@@ -19,28 +19,29 @@ Training can still be a bit touch and go, generally you want to aim for an `avg 
 _These are all trained using an ADA8 network, OPTIM_NAG, and UNIFORM_GLOROT weight init. The training was set to end at a loss of less than 0.3 so it is possible that seeds in this table could reach a lower loss. Time Taken is not a standardised metric, sometimes I run more processes than my CPU can handle and cause each process to take longer, epochs is a better gauge of time taken._
 | Seed  | Epochs | Time Taken | loss |
 | --- | --- | --- | --- |
-| 1,185,951,401 | 13 | 222 sec (3.70 mins) | 0.29 |
-| 1,947,939,716 | 15 | 252 sec (4.20 mins) | 0.29 |
-| 3,681,819,285 | 16 | 268 sec (4.46 mins) | 0.29 |
-| 2,205,898,327 | 22 | 358 sec (5.96 mins) | 0.29 |
-| 4,028,114,920 | 24 | 391 sec (6.52 mins) | 0.29 |
-| 1,096,038,209 | 24 | 392 sec (6.53 mins) | 0.29 |
-| 2,780,854,223 | 33 | 877 sec (14.61 min)  | 0.29 |
-| 636,220,169 | 57 | 890 sec (14.83 mins) | 0.29 |
-| 3,677,601,131 | 59 | 1,544 sec (25.73 min) | 0.29 |
-| 9,906,720 | 71 | 1,106 sec (18.43 mins) | 0.29 |
-| 2,528,951,483 | 81 | 1,251 sec (20.85 mins) | 0.29 |
-| 1,192,935,257 | 107 | 1,633 sec (27.21 mins) | 0.29 |
+| 1185951401 | 13 | 222 sec (3.70 mins) | 0.29 |
+| 1947939716 | 15 | 252 sec (4.20 mins) | 0.29 |
+| 3681819285 | 16 | 268 sec (4.46 mins) | 0.29 |
+| 2205898327 | 22 | 358 sec (5.96 mins) | 0.29 |
+| 4028114920 | 24 | 391 sec (6.52 mins) | 0.29 |
+| 1096038209 | 24 | 392 sec (6.53 mins) | 0.29 |
+| 2780854223 | 33 | 877 sec (14.61 min)  | 0.29 |
+| 636220169 | 57 | 890 sec (14.83 mins) | 0.29 |
+| 3677601131 | 59 | 1,544 sec (25.73 min) | 0.29 |
+| 9906720 | 71 | 1,106 sec (18.43 mins) | 0.29 |
+| 2528951483 | 81 | 1,251 sec (20.85 mins) | 0.29 |
+| 1192935257 | 107 | 1,633 sec (27.21 mins) | 0.29 |
 
 | Seed  | Epochs | Time Taken | loss |
 | --- | --- | --- | --- |
-| 1,931,370,444 | 55 | 1,455 sec (24.25 mins) | 0.23 |
-| 2,910,301,494 | 71 | 1,120 sec (18.67 mins) | 0.23 |
-| 3,721,615,797 | 81 | 2,258 sec (37.63 mins) | 0.23 |
-| 2,380,237,492 | 104 | 2,532 sec (42.20 mins) | 0.23 |
-| 1,947,939,716 | 109 | 1,283 sec (21.38 mins) | 0.23 |
+| 1931370444 | 55 | 1,455 sec (24.25 mins) | 0.23 |
+| 2910301494 | 71 | 1,120 sec (18.67 mins) | 0.23 |
+| 3721615797 | 81 | 2,258 sec (37.63 mins) | 0.23 |
+| 2380237492 | 104 | 2,532 sec (42.20 mins) | 0.23 |
+| 1947939716 | 109 | 1,283 sec (21.38 mins) | 0.23 |
 
 | Seed  | Epochs | Time Taken | loss |
 | --- | --- | --- | --- |
-| 1,931,370,444 | 116 | 1,701 sec (28.35 mins) | 0.22 |
+| 1931370444 | 116 | 1,701 sec (28.35 mins) | 0.22 |
+
 
