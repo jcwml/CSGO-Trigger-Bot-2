@@ -239,16 +239,16 @@ void processScanArea(Window w)
             const unsigned char sb = pixel & img->blue_mask;
 
 #if PRELOG_SAVESAMPLE == 1
-            // scale ushort to uchar (if you don't compile with -Ofast this can cause a division by zero)
-            rgbbytes[i]   = (unsigned char)sr;
-            rgbbytes[i+1] = (unsigned char)sg;
-            rgbbytes[i+2] = (unsigned char)sb;
+            rgbbytes[i]   = (unsigned char)cr;
+            rgbbytes[++i] = (unsigned char)cg;
+            rgbbytes[++i] = (unsigned char)cb;
+            i++;
 #endif
-
-            // 0-1 norm
-            input[i]   = sr * 0.003921568859f; // / 255.f
-            input[i+1] = sg * 0.003921568859f;
-            input[i+2] = sb * 0.003921568859f;
+            
+            // -1 to +1 normalised
+            input[0][y][x] = (((float)cr)-127.5f)*0.007843137f;
+            input[1][y][x] = (((float)cg)-127.5f)*0.007843137f;
+            input[2][y][x] = (((float)cb)-127.5f)*0.007843137f;
         }
     }
 
