@@ -234,9 +234,9 @@ void processScanArea(Window w)
         for(int x = 0; x < r0; x++)
         {
             const unsigned long pixel = XGetPixel(img, x, y);
-            const unsigned char sr = (pixel & img->red_mask) >> 16;
-            const unsigned char sg = (pixel & img->green_mask) >> 8;
-            const unsigned char sb = pixel & img->blue_mask;
+            const unsigned char cr = (pixel & img->red_mask) >> 16;
+            const unsigned char cg = (pixel & img->green_mask) >> 8;
+            const unsigned char cb = pixel & img->blue_mask;
 
 #if PRELOG_SAVESAMPLE == 1
             rgbbytes[i]   = (unsigned char)cr;
