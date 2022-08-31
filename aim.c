@@ -66,6 +66,7 @@ uint hotkeys = 1;
 #define SCAN_VARIANCE 0.f           // how much to randomly wiggle the scan area between scans
 #define SCAN_DELAY 1000             // scan frequency delay in microseconds
 #define ACTIVATION_SENITIVITY 0.88f // minimum activation sensitivity to fire a shot
+                                    // (0.70f would work quite well here too)
 #define REPEAT_ACTIVATION 0         // how many positive activations in a row before firing a shot
 #define FIRE_RATE_LIMIT_MS 300      // delay between firing shots in milliseconds
 
