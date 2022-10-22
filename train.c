@@ -8,7 +8,7 @@
 
     WINDOWS & LINUX
 
-    Compile: clang main.c -Ofast -mavx -mfma -o aim
+    Compile: clang main.c -Ofast -mfma -o aim
 
 */
 
