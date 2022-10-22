@@ -1,5 +1,5 @@
 clear;clear;
 rm aim
-clang aim.c -Ofast -mavx -mfma -lX11 -lm -o aim
+clang aim.c -Ofast -mfma -lX11 -lm -o aim
 ./aim
 
