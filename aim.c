@@ -33,7 +33,6 @@
 TBVGG3_Network net;
 
 // general
-#pragma GCC diagnostic ignored "-Wgnu-folding-constant"
 #define uint unsigned int
 
 // scan area vars
