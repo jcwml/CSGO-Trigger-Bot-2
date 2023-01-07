@@ -74,11 +74,13 @@ uint hotkeys = 1;
 /***************************************************
    ~~ Utils
 */
+#ifdef SCAN_VARIANCE
 uint qRand(const float min, const float max)
 {
     static float rndmax = 1.f/(float)RAND_MAX;
     return (((float)rand()) * rndmax) * (max-min) + min;
 }
+#endif
 
 void writePPM(const char* file, const unsigned char* data)
 {
