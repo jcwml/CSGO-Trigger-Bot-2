@@ -253,7 +253,7 @@ void processScanArea(Window w)
     }
 
     // free image block
-    XFree(img);
+    XDestroyImage(img);
 }
 
 void reprint()
