@@ -159,9 +159,9 @@ void rainbow_line_printf(const char* text)
     printf("\e[38;5;123m");
 }
 
-//https://www.cl.cam.ac.uk/~mgk25/ucs/keysymdef.h
 int key_is_pressed(KeySym ks)
 {
+    //https://www.cl.cam.ac.uk/~mgk25/ucs/keysymdef.h
     char keys_return[32];
     XQueryKeymap(d, keys_return);
     KeyCode kc2 = XKeysymToKeycode(d, ks);
