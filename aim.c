@@ -160,7 +160,7 @@ void rainbow_line_printf(const char* text)
 
 int key_is_pressed(KeySym ks)
 {
-    //https://www.cl.cam.ac.uk/~mgk25/ucs/keysymdef.h
+    // https://www.cl.cam.ac.uk/~mgk25/ucs/keysymdef.h
     char keys_return[32];
     XQueryKeymap(d, keys_return);
     KeyCode kc2 = XKeysymToKeycode(d, ks);
